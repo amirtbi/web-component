@@ -1,0 +1,12 @@
+.blueColor{
+    color:white;
+    background-color: blue;
+    padding: 0.2rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.lightOrange{
+    color:white;
+    background: orange;
+}

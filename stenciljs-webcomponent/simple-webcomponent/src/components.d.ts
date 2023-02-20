@@ -6,62 +6,68 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
-        "showAlert": () => Promise<void>;
+    interface CustomButton {
+        "color": string;
+        "disabled": boolean;
+        "size": 'small' | 'large';
     }
-}
-export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLMyComponentElement;
+    interface CustomHeader {
+        "items": string;
+    }
+    interface CustomList {
+        "navs": string;
+    }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLCustomButtonElement extends Components.CustomButton, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLCustomButtonElement: {
+        prototype: HTMLCustomButtonElement;
+        new (): HTMLCustomButtonElement;
+    };
+    interface HTMLCustomHeaderElement extends Components.CustomHeader, HTMLStencilElement {
+    }
+    var HTMLCustomHeaderElement: {
+        prototype: HTMLCustomHeaderElement;
+        new (): HTMLCustomHeaderElement;
+    };
+    interface HTMLCustomListElement extends Components.CustomList, HTMLStencilElement {
+    }
+    var HTMLCustomListElement: {
+        prototype: HTMLCustomListElement;
+        new (): HTMLCustomListElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "custom-button": HTMLCustomButtonElement;
+        "custom-header": HTMLCustomHeaderElement;
+        "custom-list": HTMLCustomListElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
-        /**
-          * The first name
-         */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-        "onTodoCompleted"?: (event: MyComponentCustomEvent<string>) => void;
+    interface CustomButton {
+        "color"?: string;
+        "disabled"?: boolean;
+        "size"?: 'small' | 'large';
+    }
+    interface CustomHeader {
+        "items"?: string;
+    }
+    interface CustomList {
+        "navs"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "custom-button": CustomButton;
+        "custom-header": CustomHeader;
+        "custom-list": CustomList;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "custom-button": LocalJSX.CustomButton & JSXBase.HTMLAttributes<HTMLCustomButtonElement>;
+            "custom-header": LocalJSX.CustomHeader & JSXBase.HTMLAttributes<HTMLCustomHeaderElement>;
+            "custom-list": LocalJSX.CustomList & JSXBase.HTMLAttributes<HTMLCustomListElement>;
         }
     }
 }
